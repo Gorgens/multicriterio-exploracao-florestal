@@ -47,4 +47,8 @@ Gorgens, Eric Bastos et al. Automated operational logging plan considering multi
 
 - Desenvolver uma rotina de processamento baseado em software livre para implementação da otimização.  
 
+Scripts em python para QGIS 2.x: [coleção dos scripts](https://github.com/Gorgens/multicriterio-exploracao-florestal/tree/master/python)
+
+Gorgens, Eric Bastos et al. Automated operational logging plan considering multi-criteria optimization. Computers and Electronics in Agriculture, v. 170, p. 105253, 2020.
+
 - Analisar as oportunidades da metodologia baseada em sensoriamento remoto frente à metodologia atualmente estabelecida pela legislação florestal brasileira. 
