@@ -15,11 +15,23 @@ Este projeto visa implementar uma abordagem multicritério para otimizar a extra
 
 - Propor uma otimização multicritério para auxiliar o planejamento florestal
 
+![Fluxograma multicriterio](img/alternativas.png)
 
+Gorgens, Eric Bastos et al. Automated operational logging plan considering multi-criteria optimization. Computers and Electronics in Agriculture, v. 170, p. 105253, 2020.
 
 - Analisar a relevância das diferentes camadas de informação durante o processo de otimização.  
 
-- Analisar as diferentes composições e pesos para a criação da superfície de custo a ser otimizada.  
+![Fluxograma multicriterio](img/camadas.png)
+
+![Fluxograma multicriterio](img/relevancia.png)
+
+Gorgens, Eric Bastos et al. Automated operational logging plan considering multi-criteria optimization. Computers and Electronics in Agriculture, v. 170, p. 105253, 2020.
+
+- Analisar as diferentes composições e pesos para a criação da superfície de custo a ser otimizada. 
+
+![Fluxograma multicriterio](img/composicao.png)
+
+Gorgens, Eric Bastos et al. Automated operational logging plan considering multi-criteria optimization. Computers and Electronics in Agriculture, v. 170, p. 105253, 2020.
 
 - Desenvolver uma rotina de processamento baseado em software livre para implementação da otimização.  
 
