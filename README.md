@@ -15,21 +15,33 @@ Este projeto visa implementar uma abordagem multicritério para otimizar a extra
 
 - Propor uma otimização multicritério para auxiliar o planejamento florestal
 
-![Fluxograma multicriterio](img/alternativas.png)
+![Composição 1](img/rotas.png)
+
+Barbosa, Rauff Pereira et al. Multi-criteria optimization for log extraction in Amazon based on airborne laser scanning data. Scientia Forestalis, v. 45, n. 115, p. 541-550, 2017.
+
+![Alternativas](img/alternativas.png)
 
 Gorgens, Eric Bastos et al. Automated operational logging plan considering multi-criteria optimization. Computers and Electronics in Agriculture, v. 170, p. 105253, 2020.
 
 - Analisar a relevância das diferentes camadas de informação durante o processo de otimização.  
 
-![Fluxograma multicriterio](img/camadas.png)
+![Impactos dos cenários](img/impactos.png)
 
-![Fluxograma multicriterio](img/relevancia.png)
+Barbosa, Rauff Pereira et al. Multi-criteria optimization for log extraction in Amazon based on airborne laser scanning data. Scientia Forestalis, v. 45, n. 115, p. 541-550, 2017.
+
+![Diferentes camadas](img/camadas.png)
+
+![Relevância das camadas](img/relevancia.png)
 
 Gorgens, Eric Bastos et al. Automated operational logging plan considering multi-criteria optimization. Computers and Electronics in Agriculture, v. 170, p. 105253, 2020.
 
 - Analisar as diferentes composições e pesos para a criação da superfície de custo a ser otimizada. 
 
-![Fluxograma multicriterio](img/composicao.png)
+![Composição 1](img/custos.png)
+
+Barbosa, Rauff Pereira et al. Multi-criteria optimization for log extraction in Amazon based on airborne laser scanning data. Scientia Forestalis, v. 45, n. 115, p. 541-550, 2017.
+
+![Composição 2](img/composicao.png)
 
 Gorgens, Eric Bastos et al. Automated operational logging plan considering multi-criteria optimization. Computers and Electronics in Agriculture, v. 170, p. 105253, 2020.
 
