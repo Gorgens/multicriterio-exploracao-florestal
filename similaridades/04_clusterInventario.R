@@ -1,5 +1,6 @@
 ## Agrupamento para 2012
 inventario2012 = read.csv('./inventario_2012.csv')
+rownames(inventario2012) = inventario2012$transect
 inventario2012 = inventario2012[,-1]
 
 inventario2012scaled = scale(inventario2012)                  # standardize variables
