@@ -7,7 +7,7 @@ require(purrr)
 require(rgeos)
 
 # Extract gaps
-chmList = chmList[39:56]
+chmList = list.files('./tanguro_2018/chm/', pattern = '\\.tif$')
 
 shapefileGaps = function(file,
                           inPath = './tanguro_2018/chm/',
