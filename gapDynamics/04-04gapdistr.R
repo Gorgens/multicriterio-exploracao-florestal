@@ -1,49 +1,63 @@
 require(raster)
 require(sp)
-library(ggplot2)
+require(ggplot2)
+require(networkD3)
+require(dplyr)
+require(magrittr)
+require(poweRlaw)
 
-# Distribution gaps
+## Primeiro sobrevoo ---------------------
 gapsDucke2017 = shapefile('./ducke_2017/ducke_2017gapsAggregated.shp')
 crs(gapsDucke2017) = '+proj=utm +zone=21 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
-gapsDucke2017$area = area(gapsDucke2017) / 10000
-# max(gapsDucke2017$area)
-ggplot(gapsDucke2017@data, aes(area)) +
-  geom_histogram(aes(y = stat(count / sum(count)))) +
-  xlim(0, 0.05) + ylim(0, 0.5) + ggtitle('Ducke 2017')
+gapsDucke2017$area = area(gapsDucke2017)
+gapsDucke2017$area %<>% floor()
+gapsDucke2017 = subset(gapsDucke2017, area > 10)
 
+ggplot(gapsDucke2017@data, aes(area)) +                                         # histograma do tamanhop de gaps
+  geom_histogram(aes(y = stat(count / sum(count)))) +
+  xlim(10, 250) + ylim(0, 0.3) + ggtitle('Ducke 2017') +
+  labs(x = 'Area (m²)', y = "Frequency")
+
+gapsDucke2017resume = gapsDucke2017@data %>%                                    # count number of gaps per area bins
+  mutate(bin = floor(area/2)*2+1) %>%
+  group_by(bin) %>%
+  count(bin)
+  
+ggplot(gapsDucke2017resume) +                                                   # gráfico log-log da área pela frequência
+  geom_point(aes(bin, n)) +
+  ggtitle('Ducke 2017') +
+  scale_x_log10() + scale_y_log10()
+
+m = displ$new(gapsDucke2017$area)                                               # ajustes da função da potência em que Prob = c * areaGap ^ alpha
+m$setXmin(10)
+estimate_pars(m)[["pars"]]
+
+
+## Segundo sobrevoo ---------------------
 gapsDucke2020 = shapefile('./ducke_2020/ducke_2020gapsAggregated.shp')
-gapsDucke2020$area = area(gapsDucke2020) / 10000
-# max(gapsDucke2020$area)
-ggplot(gapsDucke2020@data, aes(area)) +
-  geom_histogram(aes(y = stat(count / sum(count)))) + 
-  xlim(0, 0.05) + ylim(0, 0.5) + ggtitle('Ducke 2020')
+crs(gapsDucke2020) = '+proj=utm +zone=22 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
+gapsDucke2020 = spTransform(gapsDucke2020, crs(gapsDucke2017))
+gapsDucke2020$area = area(gapsDucke2020)
+gapsDucke2020$area %<>% floor()
+gapsDucke2020 = subset(gapsDucke2020, area > 10)
 
-gapsTanguro2018 = shapefile('./tanguro_2018/tanguro_2018gapsAggregated.shp')
-crs(gapsTanguro2018) = '+proj=utm +zone=22 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
-gapsTanguro2018$area = area(gapsTanguro2018) / 10000
-# max(gapsTanguro2018$area)
-ggplot(gapsTanguro2018@data, aes(area)) +
-  geom_histogram(aes(y = stat(count / sum(count)))) + 
-  xlim(0, 0.05) + ylim(0, 0.5) + ggtitle('Tanguro 2018')
-
-gapsTanguro2020 = shapefile('./tanguro_2020/tanguro_2020gapsAggregated.shp')
-gapsTanguro2020$area = area(gapsTanguro2020) / 10000
-# max(gapsTanguro2020$area)
-ggplot(gapsTanguro2020@data, aes(area)) +
+ggplot(gapsDucke2020@data, aes(area)) +                                         # histograma do tamanhop de gaps
   geom_histogram(aes(y = stat(count / sum(count)))) +
-  xlim(0, 0.05) + ylim(0, 0.5) + ggtitle('Tanguro 2020')
+  xlim(10, 250) + ylim(0, 0.3) + ggtitle('Ducke 2020') +
+  labs(x = 'Area (m²)', y = "Frequency")
 
-gapsTapajos2017 = shapefile('./tapajos_2017/tapajos_2017gapsAggregated.shp')
-crs(gapsTapajos2017) = '+proj=utm +zone=21 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
-gapsTapajos2017$area = area(gapsTapajos2017) / 10000
-# max(gapsTapajos2017$area)
-ggplot(gapsTapajos2017@data, aes(area)) +
-  geom_histogram(aes(y = stat(count / sum(count)))) + 
-  xlim(0, 0.05) + ylim(0, 0.5) + ggtitle('Tapajos 2017')
+gapsDucke2020resume = gapsDucke2020@data %>%                                    # count number of gaps per area bins
+  mutate(bin = floor(area/2)*2+1) %>%
+  group_by(bin) %>%
+  count(bin)
 
-gapsTapajos2020 = shapefile('./tapajos_2020/tapajos_2020gapsAggregated.shp')
-gapsTapajos2020$area = area(gapsTapajos2020) / 10000
-# max(gapsTapajos2020$area)
-ggplot(gapsTapajos2020@data, aes(area)) +
-  geom_histogram(aes(y = stat(count / sum(count)))) + 
-  xlim(0, 0.05) + ylim(0, 0.5) + ggtitle('Tapajos 2020')
+ggplot(gapsDucke2020resume) +                                                   # gráfico log-log da área pela frequência
+  geom_point(aes(bin, n)) +
+  ggtitle('Ducke 2020') +
+  scale_x_log10() + scale_y_log10()
+
+m = displ$new(gapsDucke2020$area)                                               # ajustes da função da potência em que Prob = c * areaGap ^ alpha
+m$setXmin(10)
+estimate_pars(m)[["pars"]]
+
+

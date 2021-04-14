@@ -7,14 +7,14 @@ require(purrr)
 require(rgeos)
 
 # Extract gaps
-chmList = list.files('./jari_2020/a/chm/', pattern = '\\.tif$')
+chmList = list.files('./ducke_2017/chm/', pattern = '\\.tif$')
 # chmList = chmList[44:51]
 
 shapefileGaps = function(file,
-                          inPath = './jari_2020/a/chm/',
-                          outPath = './jari_2020/a/gaps/',
+                          inPath = './ducke_2017/chm/',
+                          outPath = './ducke_2017/gaps/',
                           threshold = 10,
-                          size = c(9, 100000)){
+                          size = c(10, 100000)){
   gapsRaster = raster(paste0(inPath, file))
   gaps = getForestGaps(chm_layer=gapsRaster, 
                        threshold=threshold, size=size)
@@ -26,12 +26,12 @@ shapefileGaps = function(file,
 lapply(chmList, shapefileGaps)
 
 # Merge gaps
-list.files('./jari_2020/a/gaps/', pattern = '\\.shp$', full.names = TRUE) %>% 
+list.files('./ducke_2017/gaps/', pattern = '\\.shp$', full.names = TRUE) %>% 
   map(read_sf) %>%
   do.call(rbind, .) %>%
-  write_sf('./jari_2020/a/jari_2020gaps.shp')
-shapefile('./jari_2020/a/jari_2020gaps.shp') %>%
+  write_sf('./ducke_2017/ducke_2017gaps.shp')
+shapefile('./ducke_2017/ducke_2017gaps.shp') %>%
   gBuffer(byid=TRUE, width=0) %>%
   aggregate() %>%
   disaggregate() %>%
-  shapefile('./jari_2020/a/jari_2020gapsAggregated.shp', overwrite=TRUE)
+  shapefile('./ducke_2017/ducke_2017gapsAggregated.shp', overwrite=TRUE)
