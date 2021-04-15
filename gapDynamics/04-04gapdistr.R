@@ -1,7 +1,6 @@
 require(raster)
 require(sp)
 require(ggplot2)
-require(networkD3)
 require(dplyr)
 require(magrittr)
 require(poweRlaw)
@@ -9,9 +8,11 @@ require(poweRlaw)
 ## Primeiro sobrevoo ---------------------
 gapsDucke2017 = shapefile('./ducke_2017/ducke_2017gapsAggregated.shp')
 crs(gapsDucke2017) = '+proj=utm +zone=21 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
+gapsDucke2017$ano17 = 'gap'
 gapsDucke2017$area = area(gapsDucke2017)
 gapsDucke2017$area %<>% floor()
 gapsDucke2017 = subset(gapsDucke2017, area > 10)
+gapsDucke2017 %>% shapefile('./ducke_2017/ducke_2017gapsClean.shp', overwrite=TRUE)
 
 ggplot(gapsDucke2017@data, aes(area)) +                                         # histograma do tamanhop de gaps
   geom_histogram(aes(y = stat(count / sum(count)))) +
@@ -37,9 +38,11 @@ estimate_pars(m)[["pars"]]
 gapsDucke2020 = shapefile('./ducke_2020/ducke_2020gapsAggregated.shp')
 crs(gapsDucke2020) = '+proj=utm +zone=22 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
 gapsDucke2020 = spTransform(gapsDucke2020, crs(gapsDucke2017))
+gapsDucke2020$ano20 = 'gap'
 gapsDucke2020$area = area(gapsDucke2020)
 gapsDucke2020$area %<>% floor()
 gapsDucke2020 = subset(gapsDucke2020, area > 10)
+gapsDucke2020 %>% shapefile('./ducke_2020/ducke_2020gapsClean.shp', overwrite=TRUE)
 
 ggplot(gapsDucke2020@data, aes(area)) +                                         # histograma do tamanhop de gaps
   geom_histogram(aes(y = stat(count / sum(count)))) +

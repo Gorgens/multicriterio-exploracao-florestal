@@ -7,6 +7,7 @@ require(magrittr)
 
 # Sankey plot
 gapsDucke = shapefile('./dynamicsModeling/duckeGaps.shp')
+gapsDucke$area = area(gapsDucke)
 links = gapsDucke@data %>%
   group_by(source, target) %>%
   summarise(area = sum(area))
