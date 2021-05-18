@@ -1,0 +1,26 @@
+{
+    "id": "87503C3F",
+    "path": "~/GitHub/multicriterio-exploracao-florestal/similaridades/04_clusterInventario.R",
+    "project_path": "04_clusterInventario.R",
+    "type": "r_source",
+    "hash": "217156894",
+    "contents": "",
+    "dirty": false,
+    "created": 1621358267470.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "41,0",
+        "scrollLine": "16"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1621359041,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1621359041095,
+    "read_only": false,
+    "read_only_alternatives": []
+}

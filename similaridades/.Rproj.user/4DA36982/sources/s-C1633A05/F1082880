@@ -1,0 +1,27 @@
+{
+    "id": "F1082880",
+    "path": "~/GitHub/multicriterio-exploracao-florestal/similaridades/03_clusterLiDAR.R",
+    "project_path": "03_clusterLiDAR.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1621358286427.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "27,0",
+        "scrollLine": "0",
+        "disableDependencyDiscovery": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1621358765,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1621358765432,
+    "read_only": false,
+    "read_only_alternatives": []
+}
